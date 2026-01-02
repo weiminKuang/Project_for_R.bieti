@@ -1,0 +1,51 @@
+##### bam_file #####
+##### Using one individual as an example #####
+
+bwa mem -M -t 1 -R '@RG\tID:RB22\tCN:BJG\tDS:WGS_Nova\tLB:PE125\tPL:illumina\tSM:RB22'\
+        $refer \
+        $input_dir/RB22_R1.clean.fastq.gz \
+        $input_dir/RB22_R2.clean.fastq.gz > $output_dir/RB22.sam
+
+#sam2bam using samtools software
+samtools view -bt $list -o $output_dir/RB22.bam $output_dir/RB22.sam
+
+#Remove sam files
+rm $output_dir/RB22.sam
+
+#Sort Bam
+java -Xmx10g -jar /software/picard/picard.jar SortSam \
+        INPUT=$output_dir/RB22.bam \
+        OUTPUT=$output_dir/RB22.Sort.bam \
+        SORT_ORDER=coordinate \
+        VALIDATION_STRINGENCY=SILENT
+
+#Remove Duplications
+java -Xmx10g  -jar /software/picard/picard.jar MarkDuplicates \
+        INPUT=$output_dir/RB22.Sort.bam \
+        OUTPUT=$output_dir/RB22.Sort.rmDup.bam \
+        METRICS_FILE=$output_dir/RB22.Sort.rmDup.metrics \
+        REMOVE_DUPLICATES=true \
+        VALIDATION_STRINGENCY=SILENT
+        MAX_FILE_HANDLES_FOR_READ_ENDS_MAP=1000
+
+#Index Bam
+samtools index $output_dir/RB22.Sort.rmDup.bam
+java  -Xmx10g  -jar $gatk -T RealignerTargetCreator -R $refer -I RB22.Sort.rmDup.bam  -o RB22.Sort.rmDup.bam.forIndelRealigner.intervals
+
+java -Xmx10g  -jar $gatk \
+            -T IndelRealigner \
+            -R $refer \
+            -I RB22.Sort.rmDup.bam \
+            -targetIntervals RB22.Sort.rmDup.bam.forIndelRealigner.intervals \
+            -o RB22.Sort.rmDup.bam.Realigned.bam
+
+samtools index RB22.Sort.rmDup.bam.Realigned.bam
+samtools flagstat RB22.Sort.rmDup.bam.Realigned.bam > RB22.Sort.rmDup.bam.Realigned.bam.stat
+samtools depth -q 20 -Q 20 RB22.Sort.rmDup.bam.Realigned.bam | /software/depth_sum_bam.pl -s 2610000000 >> RB22.Sort.rmDup.bam.Realigned.bam.stat
+samtools view -bF12 RB22.Sort.rmDup.bam.Realigned.bam > RB22.Sort.rmDup.bam.Realigned.F12.bam
+samtools index RB22.Sort.rmDup.bam.Realigned.F12.bam 
+samtools depth -q 20 -Q 30 -b /RB_chr.position RB22.Sort.rmDup.bam.Realigned.rename.F12.bam > RB22.Sort.rmDup.bam.Realigned.rename.F12.bam.depth 
+
+#SNP_calling
+java -Xmx30g -jar /software/gatk/GenomeAnalysisTK.jar -T UnifiedGenotyper -glm BOTH -R /RB_genome/Rbieti-Sequle-HiCV2.fa -I sample.Bams.list -o 333sample.Raw.vcf -metrics 333sample.metrics -L /RB_genome/RB_chr.position.bed
+java -Xmx5g -jar /software/gatk/GenomeAnalysisTK.jar -R /RB_genome/Rbieti-Sequle-HiCV2.fa -T VariantFiltration  --filterExpression  "MQ<40.0 || QD<2.0 || ReadPosRankSum<-8.0 || FS>60.0 || MQRankSum < -12.5 ||QUAL < 40.0 || SB >= -1.0" --filterName "LowQual" --variant 333sample.Raw.vcf  --logging_level ERROR -o 333sample.Raw.Marked.vcf

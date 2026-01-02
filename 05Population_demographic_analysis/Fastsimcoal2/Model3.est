@@ -1,0 +1,36 @@
+// Search ranges and rules file
+// ****************************
+
+[PARAMETERS]
+//#isInt? #name   #dist.#min  #max 
+//all Ns are in number of haploid individuals
+1  NNR       unif  100   1e5   output bounded
+1  NCNR      unif  100   1e5   output bounded
+1  NCR       unif  100   1e5   output bounded
+1  NSER      unif  100   1e5   output bounded
+1  NSWR      unif  100   1e5   output bounded
+0  alpha1     unif  1e-5   1.0   output bounded
+1  TDIV0     unif  50    5e4   output bounded
+1  TDIV1     unif  50    5e4   output bounded
+1  TDIV2     unif  50    5e4   output bounded
+1  TDIV3     unif  50    5e4   output bounded
+0  M01     unif  1e-4    le-2   output bounded
+0  M10     unif  1e-4    le-2   output bounded
+0  M12     unif  1e-4    le-2   output bounded
+0  M21     unif  1e-4    le-2   output bounded
+0  M23     unif  1e-4    le-2   output bounded
+0  M32     unif  1e-4    le-2   output bounded
+0  M34     unif  1e-4    le-2   output bounded
+0  M43     unif  1e-4    le-2   output bounded
+
+[RULES]
+TDIV0 > TDIV1
+TDIV1 > TDIV2
+TDIV2  > TDIV3
+
+[COMPLEX PARAMETERS]
+0  alpha2 = 1 - alpha1 output
+
+
+
+

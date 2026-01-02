@@ -1,0 +1,7 @@
+genotypename: 309sample.ped
+snpname: 309sample.map
+indivname: 309sample.ped.ind
+evecoutname: 309.evec
+evaloutname: 309.eval
+numoutlieriter: 0
+

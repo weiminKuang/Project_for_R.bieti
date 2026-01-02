@@ -1,0 +1,9 @@
+datapath =/eems/309individual
+mcmcpath = /eems/chain1_20000000 
+nIndiv = 309
+nSites = 51182
+nDemes = 500
+diploid = true
+numMCMCIter = 20000000
+numBurnIter = 2000000
+numThinIter = 9999
