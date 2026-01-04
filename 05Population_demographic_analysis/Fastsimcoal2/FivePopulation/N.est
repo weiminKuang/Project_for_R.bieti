@@ -1,0 +1,14 @@
+// Priors and rules file
+// *********************
+
+[PARAMETERS]
+//#isInt? #name   #dist.#min  #max
+//all Ns are in number of haploid individuals
+1  NN1$		unif	10	 5000	 output
+1  NN2$		unif	10	 5000	 output
+1  Nanc_all$ 	unif	10	 10000	 output
+1  Tdiv$	unif 10	 2000	 output
+0  MIG01$   logunif	0.000001 1.0   output
+0  MIG10$   logunif	0.000001 1.0   output
+[COMPLEX PARAMETERS]
+0  RESIZE$ = Nanc_all$/NN1$		 hide

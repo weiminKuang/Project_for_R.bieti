@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH --job-name=NC_100Runs
+#SBATCH --partition=bio
+#SBATCH -N 1
+#SBATCH --ntasks-per-node=20
+#SBATCH --mem=100G
+#SBATCH --output=fsc.stout
+#SBATCH --error=fsc.sterr
+source /public/software/profile.d/apps_Anaconda3-2024.10.sh
+cd /public/home/ynuhjy/Kuangwm/Rbieti_Project/VCF/NC_100Runs
+for i in {01..100};do cd Run$i; ./fsc28 -t NC.tpl -e NC.est -m -0 -C 10 -n 100000 -L 40 -s 0 -M -y4 -c3; cd ../;done
+
