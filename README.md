@@ -1,10 +1,10 @@
 # Project for **Population Genomics** and **Probe Design**
 
-This repository contains scripts and workflows for comprehensive population genomics analyses, including *SNP calling*, *population structure inference*, *genetic differentiation*, *isolation by distance*, *genetic diversity*, *demographic history reconstruction*, and *probe design*.
+This repository contains scripts and workflows for comprehensive population genomics analyses, including *probe design*, *SNP calling*, *population structure inference*, *genetic differentiation*, *isolation by distance*, *genetic diversity*, *demographic history reconstruction*, and *landscape genetics analyis*.
 
 ---
 
-## **00. Probe Design**
+## **00. Probe_design**
 
 **00Probe_design/**
 - **probe_design.sh**  
@@ -12,7 +12,7 @@ This repository contains scripts and workflows for comprehensive population geno
 
 ---
 
-## **01. SNP Calling and Filtering**
+## **01. SNP_calling_and_filtering**
 
 **01SNP_calling_and_filtering/**
 - **SNP_calling.sh**  
@@ -26,7 +26,7 @@ This repository contains scripts and workflows for comprehensive population geno
 
 ---
 
-## **02. Genetic Structure Analysis**
+## **02. Genetic_structure_analysis**
 
 **02Genetic_structure_analysis/**
 - **PCA.sh**  
@@ -50,7 +50,7 @@ This repository contains scripts and workflows for comprehensive population geno
 
 ---
 
-## **03. Genetic Differentiation, Isolation by Distance, and Genetic Connectivity Analysis**
+## **03. Genetic_differentiation, isolation_by_distance, genetic_connectivity analysis**
 
 **03Genetic_differentiation_Isolation_by_distance_and_Genetic_connectivity_analysis/**
 - **Fst.sh**  
@@ -78,7 +78,7 @@ This repository contains scripts and workflows for comprehensive population geno
 
 ---
 
-## **04. Genetic Diversity Analysis**
+## **04. Genetic_diversity_analysis**
 
 **04Genetic_diverstity_analysis/**
 - **diversity.sh**  
@@ -90,7 +90,7 @@ This repository contains scripts and workflows for comprehensive population geno
 
 ---
 
-## **05. Population Demographic Analysis**
+## **05. Population_demographic_analysis**
 
 **05Population_demographic_analysis/**
 - **Fastsimcoal2/**  
@@ -100,7 +100,7 @@ This repository contains scripts and workflows for comprehensive population geno
 
 ---
 
-## **06. Ecological Niche Modeling**
+## **06. Ecological_niche_modeling**
 
 06Ecological_niche_modeling/
 
@@ -117,7 +117,7 @@ Description of ENM simulation settings, environmental variable filtering criteri
 ---
 
 
-## **07. Landscape Genetic Analysis**
+## **07. Landscape_genetic_analysis**
 
 07Landscape_genetic_analysis/
 
