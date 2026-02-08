@@ -97,3 +97,19 @@ This repository contains scripts and workflows for comprehensive population geno
   Scripts and files for demographic inference using *Fastsimcoal2*.
 - **GONE/**  
   Scripts and outputs for recent effective population size inference using *GONE*.
+
+---
+
+## **06. Landscape Genetic Analysis**
+
+06Landscape_genetic_analysis/
+
+**singlesurface.sh**
+Performs single resistance surface optimization using ResistanceGA, estimating the relationship between genetic distance and a single continuous landscape variable.
+
+**Multisurface.sh**
+Conducts multi-factor landscape resistance optimization by jointly modeling multiple environmental surfaces to identify their combined effects on gene flow.
+
+**Bootstrap.sh**
+Applies bootstrap resampling to compare candidate resistance models (including null models) and assess their relative support based on AIC distributions.
+
