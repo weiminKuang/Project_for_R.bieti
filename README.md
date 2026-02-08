@@ -100,9 +100,26 @@ This repository contains scripts and workflows for comprehensive population geno
 
 ---
 
-## **06. Landscape Genetic Analysis**
+## **06. Ecological Niche Modeling**
 
-06Landscape_genetic_analysis/
+06Ecological_niche_modeling/
+
+**location.csv**
+Historical and contemporary occurrence records used for ecological niche modeling.
+
+**ENM_MaxEnt/**
+Scripts and configuration files for ecological niche model simulation using MaxEnt, including environmental variable selection, bootstrap replication, and model evaluation.
+
+**readme.txt**
+Description of ENM simulation settings, environmental variable filtering criteria, and model parameterization.
+
+
+---
+
+
+## **07. Landscape Genetic Analysis**
+
+07Landscape_genetic_analysis/
 
 **singlesurface.sh**
 Performs single resistance surface optimization using ResistanceGA, estimating the relationship between genetic distance and a single continuous landscape variable.
